@@ -3,7 +3,7 @@
 ## Installation
 
 Compile with `cc burp.c -o burp` or some equivalent.  Then perhaps
-`sudo cp burp /usr/local/bin` and `chmod a+x /usr/local/bin/burp`.
+`sudo cp burp /usr/local/bin` and `sudo chmod a+x /usr/local/bin/burp`.
 
 ## Purpose
 
