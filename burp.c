@@ -6,15 +6,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-// This is a global counter to add to the random seed to help make it
-// a bit more randomish.
-int count=1;
-
 // Help message if wrong syntax is used or if no sintax is used.
-int help(void)
-{
-  printf("\n burp 0.1\n");
-  printf(" Copyright 2001, thorne\n\n");
+int help(void){
+  printf("\n burp\n");
+  printf(" Copyright 2001, Evans Winner\n\n");
   printf(" PURPOSE: Generate an N-length stream of pseudo-random alpha-numeric\n");
   printf(" characters. Can be used with standard DOS redirection to fill test\n");
   printf(" files with data, generate random filenames from batch files, etc.\n\n");
@@ -28,45 +23,22 @@ int help(void)
   return(0);
 }
 
-int main(int argc, char *argv[]) 
-{
-  unsigned int length;
-  char random_num;
-  char temp_rand;
-  int seed;
-  
-  // Wrong number of args...
-  if (argc != 2)
-    {
-      help();
-      return(0);
-    }
-  
-  // Either asked for 0 or atoi returned 0, which means text or other
-  // garbage, or greater than int will hold.
-  if (atol(argv[1]) < 1 || atol(argv[1]) > 65535)
-    {
-      help();
-      return(0);
-    }
-  
-  // Ok, so it looks like we have good data. We just do a loop the
-  // number of times asked for, and every time, we pick a random ASCII
-  // value and output it.
-  length = atoi(argv[1]);
-  srand(time(0));
-  seed = rand();
-  
-  while (length > 0)
-    {
-      srand(seed);
-      temp_rand = (rand() % 43) + 48;
-      seed = temp_rand + ++count;
-      if (temp_rand >= 58 && temp_rand <= 64) continue;
-      random_num = temp_rand;
-      printf("%c", random_num);
-      length--;
-    }
+int main(int argc,char *argv[]){
+  unsigned int len;
+  char n;
+  srand(time(NULL));
+  if (argc!=2){ help();return(1);}//wrong # of args
+  if (atol(argv[1])<1||atol(argv[1])>65535){help();return(1);}//args out of bounds
+  // Loop argv[1] times; each time pick
+  // a random ASCII value and output it
+  len=atoi(argv[1]);
+  while (len>0){
+    n=(rand()%43)+48;
+    if (n>=58&&n<=64) continue;
+    printf("%c",n);
+    len--;
+  }
   return(0);
 }
 
+//// burp.c ends here.
