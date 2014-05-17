@@ -1,4 +1,4 @@
-//// burp.c --- send argv[1] bytes of random data to stdout
+//// burp.c --- send argv[1] bytes of random ascii data to stdout
 //// Copyright 2001 Evans Winner
 
 //// compile with, eg. gcc burp.c -o burp.exe
@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Help message if wrong syntax is used or if no sintax is used.
+// Help message if wrong syntax is used or if no syntax is used.
 int help(void){
   printf("\n burp\n");
   printf(" Copyright 2001, Evans Winner\n\n");
