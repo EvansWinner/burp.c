@@ -4,6 +4,7 @@
 // compile with, eg. gcc burp.c -o burp.exe
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 // Help message if wrong syntax is used or if no syntax is used.
@@ -31,18 +32,25 @@ int help(void) {
   return (0);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
   unsigned int len;
   char n;
   srand(time(NULL));
-  if (argc != 2) {
+
+  if (argc != 2)
+  { // wrong number of args
     help();
     return (1);
-  } // wrong # of args
-  if (atol(argv[1]) < 1 || atol(argv[1]) > 65535) {
+  }
+
+  // args out of bounds
+  if (atol(argv[1]) < 1 || atol(argv[1]) > 65535)
+  {
     help();
     return (1);
-  } // args out of bounds
+  }
+ 
   // Loop argv[1] times; each time pick
   // a random ASCII value and output it
   len = atoi(argv[1]);
@@ -53,5 +61,7 @@ int main(int argc, char *argv[]) {
     printf("%c", n);
     len--;
   }
+
   return (0);
+
 }
